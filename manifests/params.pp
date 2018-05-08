@@ -35,4 +35,11 @@ class grafana::params {
       $service_name        = 'grafana-server'
     }
   }
+
+  Class['grafana::install']
+  -> file { "${data_dir}/plugins":
+       ensure => 'directory',
+     }
+  -> Grafana_Plugin <| |>
+
 }
